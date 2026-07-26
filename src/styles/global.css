@@ -31,6 +31,9 @@ html {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  .caret {
+    animation: none;
+  }
 }
 
 body {
@@ -147,7 +150,6 @@ pre,
 }
 .hero h1 {
   font-size: clamp(2rem, 5vw, 2.9rem);
-  /* max-width: 14ch; */
 }
 .hero p {
   max-width: 56ch;
@@ -195,6 +197,12 @@ pre,
   margin-left: 3px;
   vertical-align: text-bottom;
   animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ---------- Section ---------- */
@@ -385,14 +393,5 @@ pre,
     display: block;
     border: none;
     padding: 3px 0;
-  }
-  .caret {
-    animation: none;
-  }
-
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
   }
 }
