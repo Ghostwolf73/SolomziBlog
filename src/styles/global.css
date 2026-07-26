@@ -36,6 +36,11 @@ body {
   background-size: auto, 440px 320px;
   background-attachment: fixed, fixed;
   background-position: center, center;
+  color: var(--text);
+  font-family: var(--font-display);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+
 }
 
 a {
