@@ -10,7 +10,9 @@ const posts = (await getCollection('blog')).sort(
   <div class="wrap">
     <section class="hero" style="padding-bottom: 24px;">
       <span class="eyebrow">show ip route</span>
-      <h1>Lab notes</h1>
+      <h1 aria-label="Lab notes">
+  <span class="type-target" aria-hidden="true">Lab notes</span><span class="caret" aria-hidden="true"></span>
+</h1>
       <p>Write-ups from the homelab: routing, switching, firewalls, and automation, as I build toward CCNP.</p>
     </section>
 

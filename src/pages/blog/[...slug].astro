@@ -17,7 +17,9 @@ const { Content } = await post.render();
   <div class="wrap">
     <section class="post-header">
       <span class="eyebrow">// lab note</span>
-      <h1>{post.data.title}</h1>
+      <h1 aria-label={post.data.title}>
+  <span class="type-target" aria-hidden="true">{post.data.title}</span><span class="caret" aria-hidden="true"></span>
+</h1>
       <div class="post-meta">
         {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         · {post.data.readTime}

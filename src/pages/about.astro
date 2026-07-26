@@ -5,7 +5,9 @@ import Layout from '../layouts/Layout.astro';
   <div class="wrap">
     <section class="hero" style="padding-bottom: 24px;">
       <span class="eyebrow">whoami</span>
-      <h1>About me</h1>
+      <h1 aria-label="About me">
+  <span class="type-target" aria-hidden="true">About me</span><span class="caret" aria-hidden="true"></span>
+</h1>
       <p>
         I'm a network engineer working through my CCNP, with a homelab habit
         that's gotten a little out of hand — Cisco, Fortinet, and Aruba gear,
@@ -22,8 +24,7 @@ import Layout from '../layouts/Layout.astro';
     <section class="section">
       <div class="section-label">// experience</div>
       <p style="color: var(--text-dim);">
-        Add a short work history here — company, role, dates, one line on
-        impact. Keep it scannable; the blog does the deep-dive work.
+        ByteHubSolutions: Network and IT technician
       </p>
     </section>
 
@@ -44,9 +45,9 @@ import Layout from '../layouts/Layout.astro';
     <section class="section">
       <div class="section-label">// contact</div>
       <p>
-        <a href="mailto:you@example.com">you@example.com</a> ·
-        <a href="https://github.com/">GitHub</a> ·
-        <a href="https://www.linkedin.com/">LinkedIn</a>
+        <a href="mailto:solomzigumbo@gmail.com">Email</a> ·
+        <a href="https://github.com/Ghostwolf73">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/solomzi-g-aa69b6206/">LinkedIn</a>
       </p>
     </section>
   </div>

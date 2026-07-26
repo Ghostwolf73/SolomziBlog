@@ -49,5 +49,21 @@ const { title, description = 'Solomzi — network engineer. Routing, security, a
       });
     }
   </script>
+  <script>
+    document.querySelectorAll('.type-target').forEach((el) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const fullText = el.textContent.trim();
+      el.textContent = '';
+      let i = 0;
+      function type() {
+        if (i < fullText.length) {
+          el.textContent += fullText[i];
+          i++;
+          setTimeout(type, 55);
+        }
+      }
+      type();
+    });
+  </script>
 </body>
 </html>
