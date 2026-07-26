@@ -10,7 +10,9 @@ const posts = (await getCollection('blog'))
   <div class="wrap">
     <section class="hero">
       <span class="eyebrow">show running-config | networking &amp; security</span>
-      <h1>I build, break, and document networks.</h1>
+      <h1 aria-label="I build, break, and document networks.">
+  <span id="hero-type" aria-hidden="true">I build, break, and document networks.</span><span class="caret" aria-hidden="true"></span>
+</h1>
       <p>
         Network engineer working toward CCNP, with hands-on lab work across
         Cisco, Fortinet, and Aruba gear — routing, switching, firewalls, and
@@ -75,3 +77,20 @@ const posts = (await getCollection('blog'))
     </section>
   </div>
 </Layout>
+
+<script>
+  const el = document.getElementById('hero-type');
+  if (el && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const fullText = el.textContent.trim();
+    el.textContent = '';
+    let i = 0;
+    function type() {
+      if (i < fullText.length) {
+        el.textContent += fullText[i];
+        i++;
+        setTimeout(type, 45);
+      }
+    }
+    type();
+  }
+</script>
