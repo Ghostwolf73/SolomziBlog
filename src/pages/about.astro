@@ -6,38 +6,128 @@ import Layout from '../layouts/Layout.astro';
     <section class="hero" style="padding-bottom: 24px;">
       <span class="eyebrow">whoami</span>
       <h1 aria-label="About me">
-  <span class="type-target" aria-hidden="true">About me</span><span class="caret" aria-hidden="true"></span>
-</h1>
+        <span class="type-target" aria-hidden="true">About me</span><span class="caret" aria-hidden="true"></span>
+      </h1>
       <p>
-        I'm a network engineer working through my CCNP, with a homelab habit
-        that's gotten a little out of hand — Cisco, Fortinet, and Aruba gear,
-        Ansible playbooks, and a lot of packet captures. This site is where I
-        write up the labs so future-me (and anyone else) can retrace the steps.
+        IT Support Technician, Systems Administrator, and Network Engineer
+        with 5+ years of experience spanning Windows, Linux, and macOS
+        support, Active Directory, Microsoft 365, and Azure — backed by a
+        strong networking foundation in firewalls, VLANs, VPNs, and routing
+        (BGP, OSPF, EIGRP, MPLS). That combination means I can troubleshoot
+        deeper than a typical support tech, and translate infrastructure
+        problems into plain language for non-technical users.
       </p>
       <p>
-        Replace this paragraph with your own background: how you got into
-        networking, what you're studying toward, and what kind of role you're
-        looking for.
+        Currently working toward CCNP. Outside of work, I build and document
+        Ansible and Python automation in a home lab — this site is where
+        those lab notes live.
       </p>
     </section>
 
     <section class="section">
+      <div class="section-label">// technical skills</div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="name">Systems &amp; Support</div>
+          <div class="detail">Active Directory · Microsoft 365 · Entra ID · Windows/Linux/macOS</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Networking</div>
+          <div class="detail">TCP/IP · VLANs · BGP · OSPF · EIGRP · MPLS · VPNs (IPsec/OpenVPN)</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Security</div>
+          <div class="detail">Palo Alto · Fortinet · Cisco ASA · IDS/IPS · Zero Trust</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Cloud</div>
+          <div class="detail">Azure (VMs, Load Balancer, VNets, NSGs) · AWS · GCP</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Automation &amp; Scripting</div>
+          <div class="detail">Python · PowerShell · Bash · Ansible · Docker · Git</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Monitoring &amp; Tools</div>
+          <div class="detail">SolarWinds · Nagios · Splunk · Wireshark</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="section-label">// experience</div>
-      <p style="color: var(--text-dim);">
-        ByteHubSolutions: Network and IT technician
-      </p>
+
+      <div style="margin-bottom: 32px;">
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <strong style="color: var(--heading); font-size: 1.05rem;">IT Support Technician / Network &amp; Security Engineer</strong>
+          <span class="mono" style="color: var(--text-dim); font-size: 0.85rem;">Jan 2024 – Present</span>
+        </div>
+        <div style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 10px;">ByteHub Solutions · Pretoria, South Africa</div>
+        <ul style="color: var(--text); padding-left: 1.2em; margin: 0;">
+          <li>Provide on-site and remote Level 1-2 support across Windows, Linux, and macOS; manage Microsoft 365, Entra ID, and Active Directory user accounts and access.</li>
+          <li>Design and maintain multi-site hybrid network architecture across Azure, AWS, and on-prem infrastructure.</li>
+          <li>Deploy firewall policies, IPsec/OpenVPN tunnels, ACLs, and Azure Load Balancer for secure, available applications.</li>
+          <li>Install and maintain IP CCTV/NVR systems across hotel environments, diagnosing VLAN, PoE, and DHCP conflicts.</li>
+          <li>Automate network configuration with Ansible and Python, cutting manual effort and config drift.</li>
+          <li>Monitor network health and security posture with SolarWinds and Splunk; lead root cause analysis following ITIL process.</li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <strong style="color: var(--heading); font-size: 1.05rem;">Network &amp; IT Technician</strong>
+          <span class="mono" style="color: var(--text-dim); font-size: 0.85rem;">Jan 2019 – Dec 2023</span>
+        </div>
+        <div style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 10px;">LTE Systems · Bulawayo, Zimbabwe</div>
+        <ul style="color: var(--text); padding-left: 1.2em; margin: 0;">
+          <li>Provided network and IT support across Cisco-based LAN/WAN infrastructure; administered switches, routers, and firewalls.</li>
+          <li>Led migration from RIPv2 to OSPF, improving convergence and routing efficiency org-wide.</li>
+          <li>Implemented and tuned Palo Alto and Fortinet next-gen firewalls, cutting security incidents by 75%.</li>
+          <li>Designed VLANs and IPsec VPN topologies enforcing least-privilege segmentation across sites.</li>
+          <li>Used Wireshark, Nagios, and Linux CLI for deep-packet analysis, log review, and incident response.</li>
+        </ul>
+      </div>
     </section>
 
     <section class="section">
       <div class="section-label">// certifications</div>
       <div class="skills-grid">
         <div class="skill-card">
-          <div class="name">CCNA</div>
-          <div class="detail">Add year / status</div>
+          <div class="name">CCNP</div>
+          <div class="detail">In progress · 2026</div>
         </div>
         <div class="skill-card">
-          <div class="name">CCNP</div>
-          <div class="detail">In progress</div>
+          <div class="name">CCNA</div>
+          <div class="detail">Dec 2022</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Certified in Cybersecurity</div>
+          <div class="detail">ISC2 · Jun 2023</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Google Cybersecurity</div>
+          <div class="detail">Professional Cert · Jun 2023</div>
+        </div>
+      </div>
+      <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 16px;">
+        Diploma in Networking &amp; PC Engineering — Midlands State University, Bulawayo · Nov 2021
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-label">// home lab &amp; projects</div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="name">Enterprise Network Simulation</div>
+          <div class="detail">BGP, OSPF, EIGRP, VLANs, STP, NAT, HSRP, monitoring — <a href="#">GitHub</a></div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Routing &amp; VLAN Automation</div>
+          <div class="detail">Ansible playbooks for BGP, OSPF, MPLS, VRF — <a href="#">GitHub</a></div>
+        </div>
+        <div class="skill-card">
+          <div class="name">DDoS Simulation &amp; Defence</div>
+          <div class="detail">Python/Docker botnet sim + Ansible mitigation — <a href="#">GitHub</a></div>
         </div>
       </div>
     </section>
@@ -45,9 +135,8 @@ import Layout from '../layouts/Layout.astro';
     <section class="section">
       <div class="section-label">// contact</div>
       <p>
-        <a href="mailto:solomzigumbo@gmail.com">Email</a> ·
-        <a href="https://github.com/Ghostwolf73">GitHub</a> ·
-        <a href="https://www.linkedin.com/in/solomzi-g-aa69b6206/">LinkedIn</a>
+        <a href="mailto:solomzigumbo@gmail.com">solomzigumbo@gmail.com</a> ·
+        <a href="https://github.com/Ghostwolf73">GitHub</a>
       </p>
     </section>
   </div>

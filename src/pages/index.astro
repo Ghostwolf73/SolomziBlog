@@ -6,17 +6,18 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 ---
-<Layout title="Solomzi — Network Engineer">
+<Layout title="Solomzi — Network Engineer &amp; IT Systems Specialist">
   <div class="wrap">
     <section class="hero">
-      <span class="eyebrow">show running-config | networking &amp; security</span>
+      <span class="eyebrow">show running-config | networking, cloud &amp; IT support</span>
       <h1 aria-label="I build, break, and document networks.">
-  <span class="type-target" aria-hidden="true">I build, break, and document networks.</span><span class="caret" aria-hidden="true"></span>
-</h1>
+        <span class="type-target" aria-hidden="true">I build, break, and document networks.</span><span class="caret" aria-hidden="true"></span>
+      </h1>
       <p>
-        Network engineer working toward CCNP, with hands-on lab work across
-        Cisco, Fortinet, and Aruba gear — routing, switching, firewalls, and
-        automating all of it with Ansible. This site is my lab notebook.
+        IT Support Technician, Systems Administrator, and Network Engineer
+        working toward CCNP — Windows/Linux/macOS support, Active Directory
+        and Microsoft 365, plus routing, firewalls, and cloud infrastructure.
+        This site is my lab notebook.
       </p>
       <div class="hero-links">
         <a class="btn primary" href="/blog">Read the lab notes</a>
@@ -28,20 +29,24 @@ const posts = (await getCollection('blog'))
       <div class="section-label">// core skills</div>
       <div class="skills-grid">
         <div class="skill-card">
+          <div class="name">IT Support &amp; Systems</div>
+          <div class="detail">Active Directory · Microsoft 365 · Windows/Linux/macOS</div>
+        </div>
+        <div class="skill-card">
           <div class="name">Routing &amp; Switching</div>
           <div class="detail">OSPF · BGP · MPLS · VRF · VLANs</div>
         </div>
         <div class="skill-card">
           <div class="name">Network Security</div>
-          <div class="detail">Fortinet · Cisco ASA · DMZ · WAF · AAA</div>
+          <div class="detail">Palo Alto · Fortinet · Cisco ASA · IDS/IPS</div>
+        </div>
+        <div class="skill-card">
+          <div class="name">Cloud</div>
+          <div class="detail">Azure · AWS · GCP</div>
         </div>
         <div class="skill-card">
           <div class="name">Automation</div>
-          <div class="detail">Ansible · scripted VLAN &amp; routing configs</div>
-        </div>
-        <div class="skill-card">
-          <div class="name">Platforms</div>
-          <div class="detail">Cisco IOS · Fortinet · Aruba · VyOS</div>
+          <div class="detail">Ansible · Python · Terraform (learning)</div>
         </div>
       </div>
     </section>
@@ -77,4 +82,3 @@ const posts = (await getCollection('blog'))
     </section>
   </div>
 </Layout>
-
