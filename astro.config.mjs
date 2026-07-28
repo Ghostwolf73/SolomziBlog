@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://solomzi.dev',
+  site: 'https://solomziblog.netlify.app',
 });

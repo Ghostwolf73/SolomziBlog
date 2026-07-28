@@ -1,24 +1,34 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((post) => post.data.tags.includes(tag))
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
 ---
-<Layout title="Blog — Solomzi" description="Lab notes on routing, switching, security, and automation.">
+<Layout title={`#${tag} — Solomzi`} description={`Lab notes tagged ${tag}.`}>
   <div class="wrap">
     <section class="hero" style="padding-bottom: 24px;">
-      <span class="eyebrow">show ip route</span>
-      <h1 aria-label="Lab notes">
-  <span class="type-target" aria-hidden="true">Lab notes</span><span class="caret" aria-hidden="true"></span>
-</h1>
-      <p>Write-ups from the homelab: routing, switching, firewalls, and automation, as I build toward CCNP.</p>
+      <span class="eyebrow">show ip route | include {tag}</span>
+      <h1 aria-label={`#${tag}`}>
+        <span class="type-target" aria-hidden="true">#{tag}</span><span class="caret" aria-hidden="true"></span>
+      </h1>
     </section>
 
     <section class="section" style="border-top: none;">
       <table class="route-table">
-        <caption>Codes: LAB - homelab build, SEC - security, AUTO - automation, CERT - certification prep</caption>
         <thead>
           <tr>
             <th>Destination</th>
@@ -34,7 +44,7 @@ const posts = (await getCollection('blog')).sort(
                 <div class="route-summary">{post.data.summary}</div>
               </td>
               <td>
-                  {post.data.tags.map((tag) => <a class="route-flag" href={`/blog/tags/${tag}/`}>{tag}</a>)}
+                {post.data.tags.map((t) => <a class="route-flag" href={`/blog/tags/${t}/`}>{t}</a>)}
               </td>
               <td class="route-meta">
                 {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}<br/>
@@ -44,6 +54,7 @@ const posts = (await getCollection('blog')).sort(
           ))}
         </tbody>
       </table>
+      <p style="margin-top:20px;"><a href="/blog">&larr; all lab notes</a></p>
     </section>
   </div>
 </Layout>

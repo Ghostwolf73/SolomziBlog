@@ -69,7 +69,7 @@ const posts = (await getCollection('blog'))
                 <div class="route-summary">{post.data.summary}</div>
               </td>
               <td>
-                {post.data.tags.map((tag) => <span class="route-flag">{tag}</span>)}
+                  {post.data.tags.map((tag) => <a class="route-flag" href={`/blog/tags/${tag}/`}>{tag}</a>)}
               </td>
               <td class="route-meta">
                 {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}<br/>

@@ -4,10 +4,29 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="About — Solomzi">
   <div class="wrap">
     <section class="hero" style="padding-bottom: 24px;">
-      <span class="eyebrow">whoami</span>
-      <h1 aria-label="About me">
-        <span class="type-target" aria-hidden="true">About me</span><span class="caret" aria-hidden="true"></span>
-      </h1>
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom: 8px;">
+        <svg width="88" height="88" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <style>
+            .avatar-ping { animation: avatar-ping 2s ease-out infinite; transform-origin: 128px 128px; }
+            .avatar-dot { animation: avatar-pulse 2s ease-out infinite; }
+            @keyframes avatar-ping { 0% { r: 6; opacity: 0.6; } 100% { r: 17; opacity: 0; } }
+            @keyframes avatar-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+            @media (prefers-reduced-motion: reduce) {
+              .avatar-ping, .avatar-dot { animation: none; }
+            }
+          </style>
+          <rect x="4" y="4" width="152" height="152" rx="24" fill="#1c2733" stroke="#2e3d4d" stroke-width="2" />
+          <text x="80" y="98" font-family="monospace" font-size="52" font-weight="600" fill="#e8a33d" text-anchor="middle">&gt;_</text>
+          <circle class="avatar-ping" cx="128" cy="128" r="6" fill="#5fb3a3" opacity="0.6" />
+          <circle class="avatar-dot" cx="128" cy="128" r="7" fill="#5fb3a3" />
+        </svg>
+        <div>
+          <span class="eyebrow">whoami</span>
+          <h1 aria-label="About me" style="margin:0;">
+            <span class="type-target" aria-hidden="true">About me</span><span class="caret" aria-hidden="true"></span>
+          </h1>
+        </div>
+      </div>
       <p>
         IT Support Technician, Systems Administrator, and Network Engineer
         with 5+ years of experience spanning Windows, Linux, and macOS
@@ -22,6 +41,9 @@ import Layout from '../layouts/Layout.astro';
         Ansible and Python automation in a home lab — this site is where
         those lab notes live.
       </p>
+      <div class="hero-links">
+        <a class="btn primary" href="/resume.pdf" download>Download CV</a>
+      </div>
     </section>
 
     <section class="section">
@@ -138,6 +160,32 @@ import Layout from '../layouts/Layout.astro';
         <a href="mailto:solomzigumbo@gmail.com">solomzigumbo@gmail.com</a> ·
         <a href="https://github.com/Ghostwolf73">GitHub</a>
       </p>
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thanks/"
+        style="max-width: 480px; margin-top: 20px; display: flex; flex-direction: column; gap: 12px;"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none;">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
+          Name
+          <input type="text" name="name" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono);" />
+        </label>
+        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
+          Email
+          <input type="email" name="email" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono);" />
+        </label>
+        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
+          Message
+          <textarea name="message" rows="4" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono); resize:vertical;"></textarea>
+        </label>
+        <button type="submit" class="btn primary" style="align-self:flex-start; cursor:pointer;">Send</button>
+      </form>
     </section>
   </div>
 </Layout>
