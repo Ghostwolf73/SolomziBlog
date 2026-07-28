@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Contact — Solomzi" description="Get in touch with Solomzi Gumbo.">
+  <div class="wrap">
+    <section class="hero" style="padding-bottom: 24px;">
+      <span class="eyebrow">open a connection</span>
+      <h1 aria-label="Contact">
+        <span class="type-target" aria-hidden="true">Contact</span><span class="caret" aria-hidden="true"></span>
+      </h1>
+      <p>
+        Best way to reach me is email or the form below — I check both
+        regularly.
+      </p>
+      <p>
+        <a href="mailto:solomzigumbo@gmail.com">solomzigumbo@gmail.com</a> ·
+        <a href="#">GitHub</a> ·
+        <a href="https://wa.me/263778198093" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </p>
+    </section>
+
+    <section class="section" style="border-top: none;">
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thanks/"
+        style="max-width: 480px; display: flex; flex-direction: column; gap: 12px;"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none;">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
+          Name
+          <input type="text" name="name" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono);" />
+        </label>
+        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
+          Email
+          <input type="email" name="email" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono);" />
+        </label>
+        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
+          Message
+          <textarea name="message" rows="4" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono); resize:vertical;"></textarea>
+        </label>
+        <button type="submit" class="btn primary" style="align-self:flex-start; cursor:pointer;">Send</button>
+      </form>
+    </section>
+  </div>
+</Layout>

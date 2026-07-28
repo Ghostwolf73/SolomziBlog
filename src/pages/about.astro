@@ -226,40 +226,5 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
     </section>
-
-    <section class="section">
-      <div class="section-label">// contact</div>
-      <p>
-        <a href="mailto:solomzigumbo@gmail.com">Email</a> ·
-        <a href="https://github.com/Ghostwolf73">GitHub</a> ·
-        <a href="https://wa.me/263778198093" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      </p>
-      <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action="/thanks/"
-        style="max-width: 480px; margin-top: 20px; display: flex; flex-direction: column; gap: 12px;"
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <p style="display:none;">
-          <label>Don't fill this out: <input name="bot-field" /></label>
-        </p>
-        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
-          Name
-          <input type="text" name="name" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono);" />
-        </label>
-        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
-          Email
-          <input type="email" name="email" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono);" />
-        </label>
-        <label style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);">
-          Message
-          <textarea name="message" rows="4" required style="width:100%; margin-top:4px; padding:8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:3px; color:var(--text); font-family:var(--font-mono); resize:vertical;"></textarea>
-        </label>
-        <button type="submit" class="btn primary" style="align-self:flex-start; cursor:pointer;">Send</button>
-      </form>
-    </section>
   </div>
 </Layout>
