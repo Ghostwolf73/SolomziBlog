@@ -86,6 +86,12 @@ pre,
 .mono {
   font-family: var(--font-mono);
 }
+code {
+  background: var(--surface);
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
 
 .wrap {
   max-width: var(--max-w);
