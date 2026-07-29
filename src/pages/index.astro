@@ -2,9 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const posts = allPosts.slice(0, 3);
+const postCount = allPosts.length;
+const yearsInField = new Date().getFullYear() - 2019;
 ---
 <Layout title="Solomzi — Network Engineer &amp; IT Systems Specialist">
   <div class="wrap">
@@ -24,6 +27,80 @@ const posts = (await getCollection('blog'))
         <a class="btn" href="/about">About me</a>
       </div>
     </section>
+    <section class="section" style="border-top: none;">
+  <div class="neofetch">
+    <div class="neofetch-icon" aria-hidden="true">
+      <svg width="72" height="72" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="152" height="152" rx="24" fill="#1c2733" stroke="#2e3d4d" stroke-width="2" />
+        <text x="80" y="98" font-family="monospace" font-size="52" font-weight="600" fill="#e8a33d" text-anchor="middle">&gt;_</text>
+      </svg>
+    </div>
+    <div class="neofetch-info">
+      <div class="neofetch-header">solomzi@edge</div>
+      <div class="neofetch-rule">-----------------</div>
+      <div class="neofetch-line"><span class="neofetch-key">OS</span>: IT Support · SysAdmin · NetEng</div>
+      <div class="neofetch-line"><span class="neofetch-key">Host</span>: ByteHub Solutions</div>
+      <div class="neofetch-line"><span class="neofetch-key">Kernel</span>: CCNP (in progress)</div>
+      <div class="neofetch-line"><span class="neofetch-key">Uptime</span>: {yearsInField}+ years in IT</div>
+      <div class="neofetch-line"><span class="neofetch-key">Certs</span>: CCNA, CC, Google Cybersecurity</div>
+      <div class="neofetch-line"><span class="neofetch-key">Packages</span>: {postCount} (lab notes)</div>
+      <div class="neofetch-line"><span class="neofetch-key">Shell</span>: bash / PowerShell / Python</div>
+      <div class="neofetch-swatches" aria-hidden="true">
+        <span style="background:#0f1720;"></span>
+        <span style="background:#1c2733;"></span>
+        <span style="background:#2e3d4d;"></span>
+        <span style="background:#7d8b98;"></span>
+        <span style="background:#c8d0d8;"></span>
+        <span style="background:#e8a33d;"></span>
+        <span style="background:#5fb3a3;"></span>
+        <span style="background:#f2f5f7;"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .neofetch {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .neofetch-icon {
+    flex-shrink: 0;
+  }
+  .neofetch-info {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .neofetch-header {
+    color: var(--amber);
+    font-weight: 600;
+  }
+  .neofetch-rule {
+    color: var(--text-dim);
+  }
+  .neofetch-key {
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .neofetch-swatches {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .neofetch-swatches span {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+  }
+</style>
 
     <section class="section">
       <div class="section-label">// core skills</div>
