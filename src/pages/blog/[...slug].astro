@@ -3,32 +3,131 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+  return posts.map((post, index) => ({
     params: { slug: post.slug },
-    props: { post },
+    props: {
+      post,
+      prev: posts[index + 1] ?? null,
+      next: posts[index - 1] ?? null,
+      allPosts: posts,
+    },
   }));
 }
 
-const { post } = Astro.props;
+const { post, prev, next, allPosts } = Astro.props;
 const { Content } = await post.render();
+
+const related = allPosts
+  .filter((p) => p.slug !== post.slug)
+  .map((p) => ({
+    post: p,
+    shared: p.data.tags.filter((t) => post.data.tags.includes(t)).length,
+  }))
+  .filter((p) => p.shared > 0)
+  .sort((a, b) => b.shared - a.shared)
+  .slice(0, 3)
+  .map((p) => p.post);
 ---
 <Layout title={`${post.data.title} — Solomzi`} description={post.data.summary}>
   <div class="wrap">
     <section class="post-header">
       <span class="eyebrow">// lab note</span>
       <h1 aria-label={post.data.title}>
-  <span class="type-target" aria-hidden="true">{post.data.title}</span><span class="caret" aria-hidden="true"></span>
-</h1>
+        <span class="type-target" aria-hidden="true">{post.data.title}</span><span class="caret" aria-hidden="true"></span>
+      </h1>
       <div class="post-meta">
         {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         · {post.data.readTime}
-        {post.data.tags.map((tag) => <span class="route-flag">{tag}</span>)}
+        {post.data.tags.map((tag) => <a class="route-flag" href={`/blog/tags/${tag}/`}>{tag}</a>)}
       </div>
     </section>
     <article class="post-body">
       <Content />
     </article>
+
+    <nav class="post-nav">
+      {prev ? (
+        <a href={`/blog/${prev.slug}/`} class="post-nav-link prev">
+          <span class="post-nav-label">&larr; previous</span>
+          <span class="post-nav-title">{prev.data.title}</span>
+        </a>
+      ) : <span />}
+      {next ? (
+        <a href={`/blog/${next.slug}/`} class="post-nav-link next">
+          <span class="post-nav-label">next &rarr;</span>
+          <span class="post-nav-title">{next.data.title}</span>
+        </a>
+      ) : <span />}
+    </nav>
+
+    {related.length > 0 && (
+      <section class="section">
+        <div class="section-label">// related lab notes</div>
+        <table class="route-table">
+          <tbody>
+            {related.map((r) => (
+              <tr class="route-row">
+                <td class="route-dest">
+                  <a href={`/blog/${r.slug}/`}>{r.data.title}</a>
+                  <div class="route-summary">{r.data.summary}</div>
+                </td>
+                <td class="route-meta">
+                  {r.data.readTime}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    )}
+
     <p><a href="/blog">&larr; back to lab notes</a></p>
   </div>
+
+  <style>
+    .post-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0 40px;
+    }
+    .post-nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: border-color 0.15s ease;
+    }
+    .post-nav-link:hover {
+      border-color: var(--amber);
+      text-decoration: none;
+    }
+    .post-nav-link.next {
+      text-align: right;
+      align-items: flex-end;
+    }
+    .post-nav-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .post-nav-title {
+      color: var(--heading);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      .post-nav {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </Layout>

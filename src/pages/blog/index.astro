@@ -5,19 +5,43 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+
+const searchIndex = posts.map((p) => ({
+  slug: p.slug,
+  title: p.data.title,
+  summary: p.data.summary,
+  tags: p.data.tags,
+}));
 ---
 <Layout title="Blog — Solomzi" description="Lab notes on routing, switching, security, and automation.">
   <div class="wrap">
     <section class="hero" style="padding-bottom: 24px;">
       <span class="eyebrow">show ip route</span>
       <h1 aria-label="Lab notes">
-  <span class="type-target" aria-hidden="true">Lab notes</span><span class="caret" aria-hidden="true"></span>
-</h1>
+        <span class="type-target" aria-hidden="true">Lab notes</span><span class="caret" aria-hidden="true"></span>
+      </h1>
       <p>Write-ups from the homelab: routing, switching, firewalls, and automation, as I build toward CCNP.</p>
+
+      <input
+        type="text"
+        id="blog-search"
+        placeholder="grep -i 'search lab notes...'"
+        aria-label="Search lab notes"
+        class="search-input"
+      />
+
+      <div class="tag-pills">
+        <a href="/blog" class="tag-pill active" data-pill>all</a>
+        {allTags.map((tag) => (
+          <a href={`/blog/tags/${tag}/`} class="tag-pill">{tag}</a>
+        ))}
+      </div>
     </section>
 
     <section class="section" style="border-top: none;">
-      <table class="route-table">
+      <table class="route-table" id="route-table">
         <caption>Codes: LAB - homelab build, SEC - security, AUTO - automation, CERT - certification prep</caption>
         <thead>
           <tr>
@@ -28,13 +52,13 @@ const posts = (await getCollection('blog')).sort(
         </thead>
         <tbody>
           {posts.map((post) => (
-            <tr class="route-row">
+            <tr class="route-row" data-slug={post.slug}>
               <td class="route-dest">
                 <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
                 <div class="route-summary">{post.data.summary}</div>
               </td>
               <td>
-                  {post.data.tags.map((tag) => <a class="route-flag" href={`/blog/tags/${tag}/`}>{tag}</a>)}
+                {post.data.tags.map((tag) => <a class="route-flag" href={`/blog/tags/${tag}/`}>{tag}</a>)}
               </td>
               <td class="route-meta">
                 {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}<br/>
@@ -44,6 +68,72 @@ const posts = (await getCollection('blog')).sort(
           ))}
         </tbody>
       </table>
+      <p id="no-results" style="display:none; color: var(--text-dim);">No lab notes match that search.</p>
     </section>
   </div>
+
+  <style>
+    .search-input {
+      width: 100%;
+      max-width: 420px;
+      margin-top: 20px;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--amber);
+    }
+    .tag-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .tag-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-dim);
+      text-decoration: none;
+    }
+    .tag-pill:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      text-decoration: none;
+    }
+    .tag-pill.active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: #1a1305;
+      font-weight: 600;
+    }
+  </style>
+
+  <script define:vars={{ searchIndex }}>
+    const input = document.getElementById('blog-search');
+    const rows = document.querySelectorAll('#route-table .route-row');
+    const noResults = document.getElementById('no-results');
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let visibleCount = 0;
+      rows.forEach((row) => {
+        const slug = row.getAttribute('data-slug');
+        const entry = searchIndex.find((p) => p.slug === slug);
+        const haystack = [entry.title, entry.summary, ...entry.tags].join(' ').toLowerCase();
+        const match = q === '' || haystack.includes(q);
+        row.style.display = match ? '' : 'none';
+        if (match) visibleCount++;
+      });
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+  </script>
 </Layout>

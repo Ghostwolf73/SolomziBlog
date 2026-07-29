@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://solomziblog.netlify.app',
+  site: 'https://solomzig.netlify.app',
+  integrations: [sitemap()],
 });
