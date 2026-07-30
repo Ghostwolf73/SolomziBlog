@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="404 — Solomzi" description="Page not found.">
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">ping: unknown host</span>
+      <h1 aria-label="404: Destination unreachable">
+        <span class="type-target" aria-hidden="true">404: Destination unreachable</span><span class="caret" aria-hidden="true"></span>
+      </h1>
+      <p class="mono" style="color: var(--text-dim); max-width: 60ch;">
+        $ traceroute {Astro.url.pathname}<br/>
+        1&nbsp;&nbsp;&nbsp;* * * request timed out<br/>
+        2&nbsp;&nbsp;&nbsp;* * * request timed out<br/>
+        3&nbsp;&nbsp;&nbsp;destination host unreachable
+      </p>
+      <p>That page doesn't exist, or the route's gone stale. Let's get you back on the network.</p>
+      <div class="hero-links">
+        <a class="btn primary" href="/">Back home</a>
+        <a class="btn" href="/blog">Browse lab notes</a>
+      </div>
+    </section>
+  </div>
+</Layout>
